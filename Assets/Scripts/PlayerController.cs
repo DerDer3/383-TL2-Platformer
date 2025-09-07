@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,8 @@ public class PlayerController : MonoBehaviour
     InputAction MoveRight;
     InputAction MoveLeft;
     InputAction Jump;
+
+    [SerializeField] private Animator _animator; 
 
     float XVelocity = 0;
     float YVelocity = 0;
@@ -32,6 +35,9 @@ public class PlayerController : MonoBehaviour
         GroundCollider = GetComponent<CapsuleCollider2D>();
         Assert.NotNull(GroundCollider);
 
+        _animator = GetComponent<Animator>();
+        Assert.NotNull(_animator);
+
         //Something with sound here
 
     }
@@ -41,6 +47,16 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GetInput();
+
+        OnGround = GroundCollider.IsTouchingLayers(LayerMask.GetMask("Environment"));
+
+        _animator.SetBool("isWalking", XVelocity != 0 && OnGround);
+        _animator.SetBool("isJumping", !OnGround);
+
+        if (XVelocity > 0)
+            transform.localScale = new Vector3(1, 1, 1);
+        else if (XVelocity < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
     }
 
     void FixedUpdate()
@@ -87,5 +103,6 @@ public class PlayerController : MonoBehaviour
         Vector2 newVelocity = new Vector2(0, YVelocity);
 
         RigidBody.AddForce(newVelocity);
+
     }
 }
