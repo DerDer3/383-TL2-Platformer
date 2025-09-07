@@ -14,8 +14,6 @@ public class SMScript : MonoBehaviour
 
     //enemy sounds
     [SerializeField] private AudioClip enemy_defeated_clip;
-    public AudioClip enemy_ground_idle_clip; // walking
-    public AudioClip enemy_air_idle_clip; // flying
 
     // item sounds
     [SerializeField] private AudioClip collectable_clip;
@@ -25,6 +23,11 @@ public class SMScript : MonoBehaviour
     [SerializeField] private AudioClip background_clip;
 
 
+    private void Start()
+    {
+        BackgroundMusic();
+    }
+
     // looped sounds
     public void BackgroundMusic()
     {
@@ -32,7 +35,7 @@ public class SMScript : MonoBehaviour
             return;
 
         AudioSource sound = gameObject.AddComponent<AudioSource>();
-        sound.clip = player_jump_clip;
+        sound.clip = background_clip;
         sound.loop = true;
         sound.Play();
     }
