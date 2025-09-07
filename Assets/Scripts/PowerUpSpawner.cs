@@ -7,7 +7,9 @@ public class PowerUpSpawner : MonoBehaviour
     public GameObject player;                
     public float spawnX = -5f;
     public List<Vector3> spawnPositions; 
-    private bool hasSpawned = false;         
+    private bool hasSpawned = false;
+
+    public GenericSpawner genericSpawner;
 
     private void Update()
     {
@@ -20,12 +22,12 @@ public class PowerUpSpawner : MonoBehaviour
 
     void SpawnRandomPowerup()
     {
-        if(powerupPrefabs.Count == 0 || spawnPositions.Count == 0) { return; }
+        if(powerupPrefabs.Count == 0 || spawnPositions.Count == 0 || genericSpawner == null) { return; }
 
-        int  index = Random.Range (0, powerupPrefabs.Count);
+        int prefabsindex = Random.Range (0, powerupPrefabs.Count);
         int indexSpawnpoint = Random.Range(0, spawnPositions.Count);
 
-        Instantiate(powerupPrefabs[index], spawnPositions[indexSpawnpoint], Quaternion.identity);
+        genericSpawner.Spawn(powerupPrefabs[prefabsindex], spawnPositions[indexSpawnpoint], Quaternion.identity);
     }
 }
 
