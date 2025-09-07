@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     InputAction MoveRight;
     InputAction MoveLeft;
     InputAction Jump;
+    SpriteRenderer sprite;
 
     [SerializeField] private Animator _animator; 
 
@@ -40,6 +41,8 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
         Assert.NotNull(_animator);
 
+        sprite = GetComponent<SpriteRenderer>();
+
         //Something with sound here
 
     }
@@ -56,9 +59,9 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("isJumping", !OnGround);
 
         if (XVelocity > 0)
-            transform.localScale = new Vector3(1, 1, 1);
+            sprite.flipX = false;
         else if (XVelocity < 0)
-            transform.localScale = new Vector3(-1, 1, 1);
+            sprite.flipX = true;
     }
 
     void FixedUpdate()
