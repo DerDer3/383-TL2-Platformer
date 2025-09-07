@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GetInput();
-
+        // Moved "OnGround collision to "update" so that it updates every frame for animation purposes.
         OnGround = GroundCollider.IsTouchingLayers(LayerMask.GetMask("Environment"));
 
         _animator.SetBool("isWalking", XVelocity != 0 && OnGround);
@@ -61,16 +61,6 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Ground Collision
-        if (GroundCollider.IsTouchingLayers(LayerMask.GetMask("Environment")))
-        {
-            OnGround = true;
-        }
-        else
-        {
-            OnGround = false;
-        }
-        // Ground Collision
         PlayerMovement();
     }
 
