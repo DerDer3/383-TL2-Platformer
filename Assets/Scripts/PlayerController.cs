@@ -2,6 +2,7 @@ using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     float XVelocity = 0;
     float YVelocity = 0;
+    float BaseSpeed = 200;
     float Speed = 200;
     float JumpSpeed = 500;
 
@@ -94,5 +96,43 @@ public class PlayerController : MonoBehaviour
 
         RigidBody.AddForce(newVelocity);
 
+    }
+
+    //Buff section
+    public void ApplySpeedBuff(float multiplier, float duration)
+    {
+        StartCoroutine(SpeedBuffRoutine(multiplier, duration));
+    }
+
+    private IEnumerator SpeedBuffRoutine(float multiplier, float duration)
+    {
+        Speed *= multiplier;
+        yield return new WaitForSeconds(duration);
+        Speed = BaseSpeed;
+    }
+
+    public void ApplyBigBuff(float multiplier, float duration, float increaseduration)
+    {
+
+        StartCoroutine(BigBuffRoutine(multiplier, duration, increaseduration));
+    }
+
+    private IEnumerator BigBuffRoutine(float multiplier, float duration, float increaseduration)
+    {
+        Vector3 originalScale = transform.localScale;
+        Vector3 targetScale = originalScale * multiplier;
+
+        float elapse = 0f;
+
+        while (elapse < increaseduration)
+        {
+            transform.localScale = Vector3.Lerp(originalScale, targetScale, elapse / increaseduration);
+            elapse += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        transform.localScale = originalScale;
     }
 }
