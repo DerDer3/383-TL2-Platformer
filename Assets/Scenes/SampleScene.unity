@@ -505,6 +505,62 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1085514118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085514120}
+  - component: {fileID: 1085514119}
+  m_Layer: 0
+  m_Name: spawner
+  m_TagString: powerup_spawner
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1085514119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085514118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d942235f273bb49a519711a23b1082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PowerUpSpawner
+  powerupPrefabs:
+  - {fileID: 51730149888812129, guid: c372c4c7e0f84e94e84f1c811c9bcd1e, type: 3}
+  - {fileID: 6077133782927317855, guid: 5228936da4d345c4782ee60f9a9983c1, type: 3}
+  - {fileID: 8672559695166953022, guid: a121cf6e3cb3245458ec7aed8b1b3339, type: 3}
+  player: {fileID: 1603050048}
+  spawnX: -5
+  spawnPositions:
+  - {x: -8, y: -3, z: 0}
+  - {x: -6, y: -3, z: 0}
+  - {x: -4, y: -3, z: 0}
+  - {x: -2, y: -1, z: 0}
+  genericSpawner: {fileID: 0}
+--- !u!4 &1085514120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085514118}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.13172, y: -1.90701, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1343290529
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,9 +878,10 @@ GameObject:
   - component: {fileID: 1603050050}
   - component: {fileID: 1603050049}
   - component: {fileID: 1603050055}
+  - component: {fileID: 1603050056}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1048,6 +1105,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1603050056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603050048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc8373dc7a716b498d6fdc0b93663e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::health
+  PlayerHealth: 0
+  PlayerMaxHealth: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1057,3 +1128,4 @@ SceneRoots:
   - {fileID: 1343290533}
   - {fileID: 720980371}
   - {fileID: 1467590084}
+  - {fileID: 1085514120}

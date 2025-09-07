@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Big_powerup
+  - Health_powerup
+  - Speed_powerup
+  - powerup_spawner
   layers:
   - Default
   - TransparentFX
