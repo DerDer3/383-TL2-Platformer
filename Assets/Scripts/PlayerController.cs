@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Animator _animator; 
 
+    AnimationFSM.FSM fsm = new AnimationFSM.FSM();
+
     float XVelocity = 0;
     float YVelocity = 0;
     float BaseSpeed = 200;
@@ -44,6 +46,9 @@ public class PlayerController : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         Assert.NotNull(_animator);
+        fsm.AddState(new AnimationFSM.IdleState("Idle"));
+        fsm.AddState(new AnimationFSM.JumpState("Jump"));
+        fsm.AddState(new AnimationFSM.WalkState("Walk"));
 
         sprite = GetComponent<SpriteRenderer>();
 
@@ -59,8 +64,22 @@ public class PlayerController : MonoBehaviour
         // Moved "OnGround collision to "update" so that it updates every frame for animation purposes.
         OnGround = GroundCollider.IsTouchingLayers(LayerMask.GetMask("Environment"));
 
-        _animator.SetBool("isWalking", XVelocity != 0 && OnGround);
-        _animator.SetBool("isJumping", !OnGround);
+        // _animator.SetBool("isWalking", XVelocity != 0 && OnGround);
+        // _animator.SetBool("isJumping", !OnGround);
+
+        fsm.Update();
+        
+        var animatorState = _animator.GetCurrentAnimatorStateInfo(0);
+
+        // var sensitivity = 0.1f;
+        fsm.conditions.isOnGround = OnGround;
+        fsm.conditions.movingX = (XVelocity != 0); // (XVelocity > sensitivity ? 1 : 0) + (XVelocity < -sensitivity ? -1 : 0);
+
+        var fsmAnimationName = fsm.currentState.animationName;
+        if(!animatorState.IsName(fsmAnimationName))
+        {
+          _animator.Play(fsmAnimationName);
+        }
 
         if (XVelocity > 0)
         {
