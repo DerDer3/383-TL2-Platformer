@@ -1,10 +1,18 @@
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    // Changes by Connor Wolfe (sound)
+
+    [SerializeField] private SMScript sound_manager;
+
+    // -------------------------------
+    
+    
     Rigidbody2D RigidBody;
     CapsuleCollider2D GroundCollider;
 
@@ -38,7 +46,15 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
         Assert.NotNull(_animator);
 
-        //Something with sound here
+        // Changes by Connor Wolfe (sound)
+
+        if (sound_manager == null) // get the sound manager if not set in Unity
+        {
+            GameObject sm_obj = GameObject.Find("SoundManager");
+            if (sm_obj != null)
+                sound_manager = sm_obj.GetComponent<SMScript>();
+        }
+        // -------------------------------
 
     }
 
@@ -87,6 +103,9 @@ public class PlayerController : MonoBehaviour
         {
             RigidBody.linearVelocityY = JumpSpeed * Time.fixedDeltaTime;
             JumpTriggered = false;
+            // Changes by Connor Wolfe (sound)
+            sound_manager.JumpSound();
+            // -------------------------------
         }
         RigidBody.linearVelocityX = XVelocity * Time.fixedDeltaTime;
 

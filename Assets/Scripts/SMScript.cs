@@ -5,6 +5,7 @@ public class SMScript : MonoBehaviour
     /* Manages sounds for all non-parallax sounds
         - parallax sounds are manages in the ParallaxSMScript
      * 
+     * Script made by Connor Wolfe (sound)
      */
 
 

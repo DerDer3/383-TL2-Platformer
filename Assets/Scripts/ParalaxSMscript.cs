@@ -5,6 +5,9 @@ public class ParalaxSMscript : MonoBehaviour
 {
     /* This script manages playing paralaxed sound for a tracked object relative to the player
      * 
+     * 
+     * 
+     * Script made by Connor Wolfe (sound)
      */
 
     [Tooltip("Ensure you drag what you want to track here")]
