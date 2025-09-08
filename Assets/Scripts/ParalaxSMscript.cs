@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ParalaxSMscript : MonoBehaviour
 {
+
     /* This script manages playing paralaxed sound for a tracked object relative to the player
      * 
      * 
@@ -45,17 +46,23 @@ public class ParalaxSMscript : MonoBehaviour
     // update the volume to be paralaxxed
     private void UpdateVol()
     {
-        if (clip == null || player == null || tracking == null) // do we have all our pieces?
+        if (clip == null || player == null || tracking == null || sound == null) // do we have all our pieces?
             return;
 
         if (sound_bound <= 0) // can't have non-exstent or negative bound, so don't change volume
             return;
 
         float distance = Vector3.Distance(tracking.transform.position, player.transform.position);
-        if (distance > sound_bound)
-            sound.volume = 0.0f;
+
+        if (distance >= sound_bound)
+            sound.volume = 0.01f;
         else
-            sound.volume = 1f - (distance / sound_bound);
-    }
-    
+            sound.volume = 1.0f - (distance / sound_bound);
+
+        Debug.Log("\ndistance == " + distance 
+            + "\nsound_bound == " + sound_bound
+            + "\n(distance/sound_bound) == " + (distance / sound_bound)
+            + "\nsound.volume == " + sound.volume); ///////////////////////////////////////// remove this
+
+    }    
 }

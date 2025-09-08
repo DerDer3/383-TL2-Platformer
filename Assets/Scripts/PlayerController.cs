@@ -7,9 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     // Changes by Connor Wolfe (sound)
-
     [SerializeField] private SMScript sound_manager;
-
     // -------------------------------
     
     
@@ -47,7 +45,6 @@ public class PlayerController : MonoBehaviour
         Assert.NotNull(_animator);
 
         // Changes by Connor Wolfe (sound)
-
         if (sound_manager == null) // get the sound manager if not set in Unity
         {
             GameObject sm_obj = GameObject.Find("SoundManager");
@@ -103,6 +100,7 @@ public class PlayerController : MonoBehaviour
         {
             RigidBody.linearVelocityY = JumpSpeed * Time.fixedDeltaTime;
             JumpTriggered = false;
+
             // Changes by Connor Wolfe (sound)
             sound_manager.JumpSound();
             // -------------------------------
