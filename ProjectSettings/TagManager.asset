@@ -8,11 +8,13 @@ TagManager:
   - Health_powerup
   - Speed_powerup
   - powerup_spawner
+  - enemy
+  - trap
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Environment

@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour
     bool OnGround = false;
 
     bool JumpTriggered = false;
+    
+    
+    private Vector2 lastFacingDir = Vector2.right;
+    public Vector2 FacingDir => lastFacingDir;
 
     void Awake()
     {
@@ -59,9 +63,15 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("isJumping", !OnGround);
 
         if (XVelocity > 0)
+        {
             sprite.flipX = false;
+            lastFacingDir = Vector2.right;
+        }
         else if (XVelocity < 0)
+        {
             sprite.flipX = true;
+            lastFacingDir = Vector2.left;
+        }
     }
 
     void FixedUpdate()
