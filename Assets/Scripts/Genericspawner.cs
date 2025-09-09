@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class GenericSpawner : MonoBehaviour
+[CreateAssetMenu(menuName ="Genericspawner")]
+public class GenericSpawner : ScriptableObject
 {
     public GameObject Spawn(GameObject prefab, Vector3 position, Quaternion rotation)
     {

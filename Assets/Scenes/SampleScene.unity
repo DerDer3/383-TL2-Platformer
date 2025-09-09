@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 1085514120}
   - component: {fileID: 1085514119}
   m_Layer: 0
-  m_Name: spawner
+  m_Name: spawner_powerup
   m_TagString: powerup_spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -654,7 +654,7 @@ MonoBehaviour:
   - {x: -6, y: -3, z: 0}
   - {x: -4, y: -3, z: 0}
   - {x: -2, y: -1, z: 0}
-  genericSpawner: {fileID: 0}
+  genericSpawner: {fileID: 11400000, guid: afd6d9944621b7841920f61822fe4d46, type: 2}
 --- !u!4 &1085514120
 Transform:
   m_ObjectHideFlags: 0
