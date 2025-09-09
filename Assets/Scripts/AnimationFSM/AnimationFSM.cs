@@ -41,7 +41,7 @@ namespace AnimationFSM
       {
         if(state.IsMatchingConditions(conditions))
         {
-          Debug.Log("Current state " + state); 
+          // Debug.Log("Current state " + state); 
           currentState = state;
           break;
         }
