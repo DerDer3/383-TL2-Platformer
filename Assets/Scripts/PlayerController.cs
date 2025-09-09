@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
     float YVelocity = 0;
     float BaseSpeed = 200;
     float Speed = 200;
-    float JumpSpeed = 500;
+    float JumpSpeed = 1000;
 
     bool OnGround = false;
 
@@ -52,7 +53,6 @@ public class PlayerController : MonoBehaviour
 
         sprite = GetComponent<SpriteRenderer>();
 
-        //Something with sound here
 
     }
 
@@ -127,6 +127,14 @@ public class PlayerController : MonoBehaviour
         Vector2 newVelocity = new Vector2(0, YVelocity);
 
         RigidBody.AddForce(newVelocity);
+
+
+        // Restart if player falls of platforms
+        string CurrentScene = SceneManager.GetActiveScene().name;
+        if (RigidBody.position.y < -10)
+        {
+            SceneManager.LoadScene(CurrentScene);
+        }
 
     }
 
