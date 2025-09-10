@@ -5,6 +5,7 @@ public class Health : MonoBehaviour, IDamageable
     public bool destroyOnDeath = true;
     public int maxHealth = 3;
     private int currentHealth;
+    public HudScript healthBarMove;
 
     private void Start()
     {
@@ -23,6 +24,7 @@ public class Health : MonoBehaviour, IDamageable
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
+        healthBarMove.decreaseHealthBar(amount);
         Debug.Log($"{name} took {amount} dmg. HP: {currentHealth}/{maxHealth}");
         if (currentHealth <= 0)
         {

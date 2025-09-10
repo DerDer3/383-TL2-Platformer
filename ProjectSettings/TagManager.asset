@@ -10,6 +10,7 @@ TagManager:
   - powerup_spawner
   - enemy
   - trap
+  - HUD
   layers:
   - Default
   - TransparentFX
