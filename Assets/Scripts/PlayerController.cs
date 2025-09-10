@@ -3,6 +3,8 @@ using NUnit.Framework.Constraints;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,17 +19,25 @@ public class PlayerController : MonoBehaviour
     InputAction MoveRight;
     InputAction MoveLeft;
     InputAction Jump;
+    SpriteRenderer sprite;
 
     [SerializeField] private Animator _animator; 
 
+    AnimationFSM.FSM fsm = new AnimationFSM.FSM();
+
     float XVelocity = 0;
     float YVelocity = 0;
+    float BaseSpeed = 200;
     float Speed = 200;
-    float JumpSpeed = 500;
+    float JumpSpeed = 1000;
 
     bool OnGround = false;
 
     bool JumpTriggered = false;
+    
+    
+    private Vector2 lastFacingDir = Vector2.right;
+    public Vector2 FacingDir => lastFacingDir;
 
     void Awake()
     {
@@ -43,6 +53,11 @@ public class PlayerController : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         Assert.NotNull(_animator);
+        fsm.AddState(new AnimationFSM.IdleState("Idle"));
+        fsm.AddState(new AnimationFSM.JumpState("Jump"));
+        fsm.AddState(new AnimationFSM.WalkState("Walk"));
+
+        sprite = GetComponent<SpriteRenderer>();
 
         // Changes by Connor Wolfe (sound)
         if (sound_manager == null) // get the sound manager if not set in Unity
@@ -63,13 +78,33 @@ public class PlayerController : MonoBehaviour
         // Moved "OnGround collision to "update" so that it updates every frame for animation purposes.
         OnGround = GroundCollider.IsTouchingLayers(LayerMask.GetMask("Environment"));
 
-        _animator.SetBool("isWalking", XVelocity != 0 && OnGround);
-        _animator.SetBool("isJumping", !OnGround);
+        // _animator.SetBool("isWalking", XVelocity != 0 && OnGround);
+        // _animator.SetBool("isJumping", !OnGround);
+
+        fsm.Update();
+        
+        var animatorState = _animator.GetCurrentAnimatorStateInfo(0);
+
+        // var sensitivity = 0.1f;
+        fsm.conditions.isOnGround = OnGround;
+        fsm.conditions.movingX = (XVelocity != 0); // (XVelocity > sensitivity ? 1 : 0) + (XVelocity < -sensitivity ? -1 : 0);
+
+        var fsmAnimationName = fsm.currentState.animationName;
+        if(!animatorState.IsName(fsmAnimationName))
+        {
+          _animator.Play(fsmAnimationName);
+        }
 
         if (XVelocity > 0)
-            transform.localScale = new Vector3(1, 1, 1);
+        {
+            sprite.flipX = false;
+            lastFacingDir = Vector2.right;
+        }
         else if (XVelocity < 0)
-            transform.localScale = new Vector3(-1, 1, 1);
+        {
+            sprite.flipX = true;
+            lastFacingDir = Vector2.left;
+        }
     }
 
     void FixedUpdate()
@@ -111,5 +146,51 @@ public class PlayerController : MonoBehaviour
 
         RigidBody.AddForce(newVelocity);
 
+
+        // Restart if player falls of platforms
+        string CurrentScene = SceneManager.GetActiveScene().name;
+        if (RigidBody.position.y < -10)
+        {
+            SceneManager.LoadScene(CurrentScene);
+        }
+
+    }
+
+    //Buff section
+    public void ApplySpeedBuff(float multiplier, float duration)
+    {
+        StartCoroutine(SpeedBuffRoutine(multiplier, duration));
+    }
+
+    private IEnumerator SpeedBuffRoutine(float multiplier, float duration)
+    {
+        Speed *= multiplier;
+        yield return new WaitForSeconds(duration);
+        Speed = BaseSpeed;
+    }
+
+    public void ApplyBigBuff(float multiplier, float duration, float increaseduration)
+    {
+
+        StartCoroutine(BigBuffRoutine(multiplier, duration, increaseduration));
+    }
+
+    private IEnumerator BigBuffRoutine(float multiplier, float duration, float increaseduration)
+    {
+        Vector3 originalScale = transform.localScale;
+        Vector3 targetScale = originalScale * multiplier;
+
+        float elapse = 0f;
+
+        while (elapse < increaseduration)
+        {
+            transform.localScale = Vector3.Lerp(originalScale, targetScale, elapse / increaseduration);
+            elapse += Time.deltaTime;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        transform.localScale = originalScale;
     }
 }
