@@ -1153,6 +1153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8191c220474c5f94f9f05628d4c396d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  sound_manager: {fileID: 0}
   _animator: {fileID: 1603050055}
 --- !u!70 &1603050050
 CapsuleCollider2D:
@@ -1401,7 +1402,7 @@ GameObject:
   - component: {fileID: 1612911576}
   - component: {fileID: 1612911575}
   m_Layer: 0
-  m_Name: SMScript
+  m_Name: SoundManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1424,6 +1425,7 @@ MonoBehaviour:
   collectable_clip: {fileID: 8300000, guid: 76ad4c37d0bac9740b1eedfd5639b253, type: 3}
   powerup_clip: {fileID: 8300000, guid: 870ebfe6e3a390c4bbf9ba8c48518a13, type: 3}
   background_clip: {fileID: 8300000, guid: e89b04dbf08e58345add8c1ff4ee3e33, type: 3}
+  background_volume: 0.5
 --- !u!4 &1612911576
 Transform:
   m_ObjectHideFlags: 0
