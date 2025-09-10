@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class PlayerController : MonoBehaviour
 
     float XVelocity = 0;
     float YVelocity = 0;
-    float Speed = 200;
-    float JumpSpeed = 500;
+    float Speed = 300;
+    float JumpSpeed = 1000;
 
     bool OnGround = false;
 
@@ -87,5 +88,13 @@ public class PlayerController : MonoBehaviour
         Vector2 newVelocity = new Vector2(0, YVelocity);
 
         RigidBody.AddForce(newVelocity);
+
+
+        // Restart level if player falls off platforms
+        string CurrentScene = SceneManager.GetActiveScene().name;
+        if (RigidBody.position.y < -10)
+        {
+            SceneManager.LoadScene(CurrentScene);
+        }
     }
 }
