@@ -8,6 +8,14 @@ TagManager:
   - Health_powerup
   - Speed_powerup
   - powerup_spawner
+<<<<<<< Updated upstream
+=======
+  - enemy
+  - trap
+  - HUD
+  - GoldCoin
+  - SilverCoin
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
