@@ -915,12 +915,14 @@ MonoBehaviour:
   - {fileID: 6077133782927317855, guid: 5228936da4d345c4782ee60f9a9983c1, type: 3}
   - {fileID: 8672559695166953022, guid: a121cf6e3cb3245458ec7aed8b1b3339, type: 3}
   player: {fileID: 1603050048}
-  spawnX: []
+  spawnX:
+  - -5
+  - 0
+  - 8
   spawnPositions:
-  - {x: -8, y: -3, z: 0}
   - {x: -6, y: -3, z: 0}
-  - {x: -4, y: -3, z: 0}
-  - {x: -2, y: -1, z: 0}
+  - {x: 3, y: 1, z: 0}
+  - {x: 12, y: 1, z: 0}
   genericSpawner: {fileID: 11400000, guid: afd6d9944621b7841920f61822fe4d46, type: 2}
 --- !u!4 &1085514120
 Transform:
@@ -1737,6 +1739,7 @@ GameObject:
   - component: {fileID: 1603050055}
   - component: {fileID: 1603050057}
   - component: {fileID: 1603050056}
+  - component: {fileID: 1603050058}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1995,6 +1998,18 @@ MonoBehaviour:
   destroyOnDeath: 0
   maxHealth: 3
   healthBarMove: {fileID: 590289004}
+--- !u!114 &1603050058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603050048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1280cc7f32359b44a1682e8271e4e93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
 --- !u!1 &1612911574
 GameObject:
   m_ObjectHideFlags: 0
