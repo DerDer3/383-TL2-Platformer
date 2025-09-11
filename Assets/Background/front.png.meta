@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Background/front.png.meta
 guid: a2b88d8bae7fa4e4285e8c613dd24d6f
+=======
+<<<<<<< HEAD
+guid: 85b668fe4b4f78e49b4d9c9d20c23dfa
+=======
+guid: 7194e3a776b1c634e9f65b56578e0bdb
+>>>>>>> e4aacacf192b570fa67fc5c9553090be6ae42e4a
+>>>>>>> 50f20395bc846863478d4bc54ad46e64efa57651:Assets/Background/Cielo pixelado.png.meta
 TextureImporter:
   internalIDToNameTable:
   - first:

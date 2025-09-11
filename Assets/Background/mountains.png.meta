@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/Background/mountains.png.meta
 guid: 0044acb768d7e96429b71421e6b7c897
+========
+guid: 2cfb94582d02d30419aafab5b8cc0878
+>>>>>>>> 50f20395bc846863478d4bc54ad46e64efa57651:Assets/Background/clouds.png.meta
+=======
+guid: 6115c6fa2b332fb4c8f989060b88c1e3
+>>>>>>> 50f20395bc846863478d4bc54ad46e64efa57651
 TextureImporter:
   internalIDToNameTable:
   - first:
