@@ -2,7 +2,7 @@ namespace AnimationFSM
 {
   public class JumpState : State
   {
-    public JumpState(string animationName) : base(animationName) {}
+    public JumpState(string animationName) : base(animationName) { }
     public override bool IsMatchingConditions(Conditions conditions)
     {
       return !conditions.isOnGround;
@@ -11,7 +11,7 @@ namespace AnimationFSM
 
   public class WalkState : State
   {
-    public WalkState(string animationName) : base(animationName) {}
+    public WalkState(string animationName) : base(animationName) { }
     public override bool IsMatchingConditions(Conditions conditions)
     {
       return conditions.isOnGround && conditions.movingX;
@@ -20,10 +20,21 @@ namespace AnimationFSM
 
   public class IdleState : State
   {
-    public IdleState(string animationName) : base(animationName) {}
+    public IdleState(string animationName) : base(animationName) { }
     public override bool IsMatchingConditions(Conditions conditions)
     {
-      return conditions.isOnGround && !conditions.movingX;;
+      return conditions.isOnGround && !conditions.movingX; ;
+    }
+  }
+
+
+  public class FlyingState : State
+  {
+    public FlyingState(string animationName) : base(animationName) { }
+
+    public override bool IsMatchingConditions(Conditions conditions)
+    {
+      return true;
     }
   }
 }
