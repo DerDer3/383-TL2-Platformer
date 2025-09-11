@@ -30,6 +30,8 @@ public class FlyingEnemyAI : MonoBehaviour
     [SerializeField] private float idleBobAmplitude = 0.1f;
     [SerializeField] private float idleBobSpeed = 1f;
 
+    AnimationFSM.FSM fsm = new AnimationFSM.FSM();
+
     private Transform _player;
     private Coroutine _shootLoop;
     private Rigidbody2D _rb;
@@ -41,6 +43,9 @@ public class FlyingEnemyAI : MonoBehaviour
 
     private void Awake()
     {
+
+        fsm.AddState(new AnimationFSM.FlyingState("Flying"));
+
         _rb = GetComponent<Rigidbody2D>();
         _rb.isKinematic = true;
         _rb.gravityScale = 0f;
