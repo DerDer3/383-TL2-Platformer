@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7194e3a776b1c634e9f65b56578e0bdb
+guid: 8eee7b5b6acaf264a80b1b32fa88d53f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9152206209883199151
-    second: Cielo pixelado_0
+      213: -1673732733077124514
+    second: trees_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,12 +37,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cielo pixelado_0
+      name: trees_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 960
-        height: 460
+        width: 240
+        height: 139
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fa65633be0b230f70800000000000000
-      internalID: 9152206209883199151
+      spriteID: e5a8ef372f4b5c8e0800000000000000
+      internalID: -1673732733077124514
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cielo pixelado_0: 9152206209883199151
+      trees_0: -1673732733077124514
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
