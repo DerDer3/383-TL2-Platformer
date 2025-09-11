@@ -3,6 +3,8 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public CoinData coinData;
+    public CoinCollector CoinCounter;
+
 
     // added by Connor
     [SerializeField] SMScript sound_manager;
@@ -25,6 +27,15 @@ public class Coin : MonoBehaviour
             // ---------------
 
             inventory.AddCoin(coinData.value);
+            if (coinData.value == 5)
+            {
+                CoinCounter.IncreaseCoin(5, "gold");
+            }
+
+            if (coinData.value == 1)
+            {
+                CoinCounter.IncreaseCoin(1, "silver");
+            }
             Destroy(gameObject);
         }
     }
