@@ -7,6 +7,16 @@ public class Health : MonoBehaviour, IDamageable
     private int currentHealth;
     public HudScript healthBarMove;
 
+    // added by Connor
+    [SerializeField] SMScript sound_manager;
+    private void Awake()
+    {
+        GameObject sm_obj = GameObject.Find("SoundManager");
+        if (sm_obj)
+            sound_manager = sm_obj.GetComponent<SMScript>();
+    }
+    // --------------
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -39,7 +49,9 @@ public class Health : MonoBehaviour, IDamageable
     
     private void Die()
     {
-        // TODO: effect / sound 
+        // added Connor
+        sound_manager.DefeatSound();
+        // ------------
         if (destroyOnDeath) Destroy(gameObject);
         else gameObject.SetActive(false);
     }
