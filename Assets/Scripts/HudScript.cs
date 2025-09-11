@@ -3,18 +3,22 @@ using UnityEngine.UI;
 
 public class HudScript : MonoBehaviour
 {
-    [SerializeField]
-    private Slider healthBarAmount;
+
+    [SerializeField] private Slider healthBarAmount;
+    [SerializeField] private GameObject player;
+
+    private Health playerHealth;
 
     void Start()
     {
-        healthBarAmount.maxValue = 3;
-        healthBarAmount.value = 3;
+        playerHealth = player.GetComponent<Health>();
+
+        healthBarAmount.maxValue = playerHealth.maxHealth;
+        healthBarAmount.value = playerHealth.currentHealth;
     }
 
-    public void decreaseHealthBar(int amount)
+    void Update()
     {
-        Debug.Log("Decreasing Health Bar(Ouch!)");
-        healthBarAmount.value -= amount;
+        healthBarAmount.value = playerHealth.currentHealth;
     }
 }

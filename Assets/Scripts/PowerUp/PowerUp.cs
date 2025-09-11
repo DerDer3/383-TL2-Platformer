@@ -4,7 +4,7 @@ public class PowerUp : MonoBehaviour
 {
     public PowerupEffect PowerupEffect;
 
-    private SMScript soundManager;
+    [SerializeField] private SMScript soundManager;
 
     private void Start()
     {
