@@ -12,8 +12,13 @@ public class Health : MonoBehaviour
 
     public void Heal(int amount)
     {
+<<<<<<< Updated upstream
         PlayerHealth += amount;
         if (PlayerHealth > PlayerMaxHealth) 
+=======
+        currentHealth += amount;
+        if (currentHealth > maxHealth)
+>>>>>>> Stashed changes
         { 
             PlayerHealth = PlayerMaxHealth;
         }
