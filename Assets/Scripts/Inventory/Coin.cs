@@ -27,6 +27,7 @@ public class Coin : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other)
     {
         coinBehavior.Execute(this, other);
+        
         if (coinData.coinName.Contains("Gold"))
         {
             Collector.IncreaseCoin("Gold");
