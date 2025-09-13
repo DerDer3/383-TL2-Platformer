@@ -23,7 +23,7 @@ public class CoinHud : MonoBehaviour
     {
         if (type == "Gold")
         {
-            GoldAmount += 1;
+            GoldAmount += 5;
             GoldText.text = GoldAmount.ToString();
         }
 
