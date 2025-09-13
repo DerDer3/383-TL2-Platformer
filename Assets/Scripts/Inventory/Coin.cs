@@ -1,9 +1,11 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
     public CoinData coinData;
     private ICoinBehavior coinBehavior;
+    public CoinHud Collector;
 
     // added by Connor
     [SerializeField] SMScript sound_manager;
@@ -25,5 +27,14 @@ public class Coin : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D other)
     {
         coinBehavior.Execute(this, other);
+        if (coinData.coinName.Contains("Gold"))
+        {
+            Collector.IncreaseCoin("Gold");
+        }
+
+        if (coinData.coinName.Contains("Silver"))
+        {
+            Collector.IncreaseCoin("Silver");
+        }
     }
 }
