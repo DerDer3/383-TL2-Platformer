@@ -3,8 +3,7 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public CoinData coinData;
-    public CoinCollector CoinCounter;
-
+    private ICoinBehavior coinBehavior;
 
     // added by Connor
     [SerializeField] SMScript sound_manager;
@@ -13,30 +12,18 @@ public class Coin : MonoBehaviour
         GameObject sm_obj = GameObject.Find("SoundManager");
         if (sm_obj)
             sound_manager = sm_obj.GetComponent<SMScript>();
+
+        // Decorator Pattern -- Mikayla
+        coinBehavior = new CoinDecorator(
+            new CoinSound(sound_manager),
+            new CoinCollect()
+        );
+        // -----------------
     }
     // -----------------
-
+    // Decorator Pattern    --    Mikayla
     public void OnTriggerEnter2D(Collider2D other)
     {
-        Inventory inventory = other.GetComponent<Inventory>();
-        
-        if(inventory != null)
-        {
-            // Added by Connor
-            sound_manager.CollectableSound();
-            // ---------------
-
-            inventory.AddCoin(coinData.value);
-            if (coinData.value == 5)
-            {
-                CoinCounter.IncreaseCoin(5, "gold");
-            }
-
-            if (coinData.value == 1)
-            {
-                CoinCounter.IncreaseCoin(1, "silver");
-            }
-            Destroy(gameObject);
-        }
+        coinBehavior.Execute(this, other);
     }
 }
