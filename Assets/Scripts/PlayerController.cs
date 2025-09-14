@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
     // Changes by Connor Wolfe (sound)
     [SerializeField] private SMScript sound_manager;
     // -------------------------------
-    
+
+    [SerializeField] private GameObject DeathMenu;
     
     Rigidbody2D RigidBody;
     CapsuleCollider2D GroundCollider;
@@ -151,7 +152,8 @@ public class PlayerController : MonoBehaviour
         string CurrentScene = SceneManager.GetActiveScene().name;
         if (RigidBody.position.y < -10)
         {
-            SceneManager.LoadScene(CurrentScene);
+            DeathMenu.SetActive(true);
+            Time.timeScale = 0f;
         }
 
     }
